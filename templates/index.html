@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>System Monitoring</title>
+    <!-- Include the Plotly JavaScript library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
+        /* Apply CSS styling to the gauge charts */
         .plotly-graph-div {
             margin: auto;
             width: 50%;
@@ -15,13 +17,20 @@
 <body>
     <div class="container">
         <h1>System Monitoring</h1>
+        
+        <!-- Container for the CPU gauge chart -->
         <div id="cpu-gauge"></div>
+
+        <!-- Container for the Memory gauge chart -->
         <div id="mem-gauge"></div>
+        
+        <!-- Display an error message if it exists -->
         {% if message %}
         <div class="alert alert-danger">{{ message }}</div>
         {% endif %}
     </div>
     <script>
+        // Configuration for the CPU gauge chart
         var cpuGauge = {
             type: "indicator",
             mode: "gauge+number",
@@ -45,6 +54,7 @@
             }
         };
         
+        // Configuration for the Memory gauge chart
         var memGauge = {
             type: "indicator",
             mode: "gauge+number",
@@ -68,10 +78,16 @@
             }
         };
         
+        // Layout for the CPU gauge chart
         var cpuGaugeLayout = { title: "CPU Utilization" };
+
+        // Layout for the Memory gauge chart
         var memGaugeLayout = { title: "Memory Utilization" };
-        
+
+        // Initialize the CPU gauge chart
         Plotly.newPlot('cpu-gauge', [cpuGauge], cpuGaugeLayout);
+
+        // Initialize the Memory gauge chart
         Plotly.newPlot('mem-gauge', [memGauge], memGaugeLayout);
     </script>
 </body>

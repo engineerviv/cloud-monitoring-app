@@ -1,26 +1,4 @@
-# **Cloud Native Resource Monitoring Python App on K8s!**
-
-## Things you will Learn 🤯
-
-1. Python and How to create Monitoring Application in Python using Flask and psutil
-2. How to run a Python App locally.
-3. Learn Docker and How to containerize a Python application
-    1. Creating Dockerfile
-    2. Building DockerImage
-    3. Running Docker Container
-    4. Docker Commands
-4. Create ECR repository using Python Boto3 and pushing Docker Image to ECR
-5. Learn Kubernetes and Create EKS cluster and Nodegroups
-6. Create Kubernetes Deployments and Services using Python!
-
-# **Youtube Video for step by step Demonstration!**
-
-[![Video Tutorial](https://img.youtube.com/vi/kBWCsHEcWnc/0.jpg)](https://youtu.be/kBWCsHEcWnc)
-
-
-## **Prerequisites** !
-
-(Things to have before starting the projects)
+## **Prerequisites**
 
 - [x]  AWS Account.
 - [x]  Programmatic access and AWS configured with CLI.
@@ -28,7 +6,7 @@
 - [x]  Docker and Kubectl installed.
 - [x]  Code editor (Vscode)
 
-# ✨Let’s Start the Project ✨
+# Let’s Start the Project
 
 ## **Part 1: Deploying the Flask application locally**
 
@@ -151,11 +129,14 @@ Create a node group in the EKS cluster.
 ```jsx
 from kubernetes import client, config
 
-# Load Kubernetes configuration
+# Load the Kubernetes configuration from the default location
 config.load_kube_config()
 
 # Create a Kubernetes API client
 api_client = client.ApiClient()
+
+# Define the image name (this can be provided by the user)
+image_name = " "
 
 # Define the deployment
 deployment = client.V1Deployment(
@@ -173,7 +154,7 @@ deployment = client.V1Deployment(
                 containers=[
                     client.V1Container(
                         name="my-flask-container",
-                        image="568373317874.dkr.ecr.us-east-1.amazonaws.com/my-cloud-native-repo:latest",
+                        image=image_name,  # Use the provided image name
                         ports=[client.V1ContainerPort(container_port=5000)]
                     )
                 ]

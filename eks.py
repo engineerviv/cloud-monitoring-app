@@ -1,11 +1,13 @@
-#create deployment and service
 from kubernetes import client, config
 
-# Load Kubernetes configuration
+# Load the Kubernetes configuration from the default location
 config.load_kube_config()
 
 # Create a Kubernetes API client
 api_client = client.ApiClient()
+
+# Define the image name (this can be provided by the user)
+image_name = " "
 
 # Define the deployment
 deployment = client.V1Deployment(
@@ -23,7 +25,7 @@ deployment = client.V1Deployment(
                 containers=[
                     client.V1Container(
                         name="my-flask-container",
-                        image="568373317874.dkr.ecr.us-east-1.amazonaws.com/my_monitoring_app_image:latest",
+                        image=image_name,  # Use the provided image name
                         ports=[client.V1ContainerPort(container_port=5000)]
                     )
                 ]
